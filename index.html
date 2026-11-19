@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>HappySmile lead callback mockup (fictional case)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Persistent Top Navigation Bar -->
+  <header class="app-nav-header" role="banner">
+    <div class="nav-container">
+      <nav class="segmented-control" role="tablist" aria-label="Demo screen navigation">
+        <button id="nav-btn-patient" class="segmented-btn active" role="tab" aria-selected="true" aria-controls="screen-patient" tabindex="0">
+          <span class="seg-number">1</span>
+          <span class="seg-text">The moment they ask</span>
+        </button>
+        <button id="nav-btn-team" class="segmented-btn" role="tab" aria-selected="false" aria-controls="screen-team" tabindex="-1">
+          <span class="seg-number">2</span>
+          <span class="seg-text">What HappySmile sees</span>
+        </button>
+      </nav>
+      <p class="nav-caption">Tap 'Call me now' on screen 1 and watch screen 2 update.</p>
+    </div>
+  </header>
+
+  <!-- Main Viewports Container -->
+  <main class="main-content" id="main-content">
+
+    <!-- ==================== SCREEN 1: PATIENT (MOBILE-FIRST) ==================== -->
+    <section id="screen-patient" class="screen-view active" role="tabpanel" aria-labelledby="nav-btn-patient" aria-hidden="false">
+      <div class="patient-wrapper">
+        <div class="phone-frame">
+          <div class="phone-notch" aria-hidden="true">
+            <span class="phone-speaker"></span>
+          </div>
+
+          <div class="phone-screen">
+            <!-- Top brand header -->
+            <header class="phone-header">
+              <div class="brand-logo">
+                <svg class="brand-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="14" cy="14" r="13" stroke="#0E8F83" stroke-width="2" fill="#E8F6F4"/>
+                  <path d="M8 15C9.5 18 12 19 14 19C16 19 18.5 18 20 15" stroke="#0E8F83" stroke-width="2.5" stroke-linecap="round"/>
+                  <circle cx="10" cy="11.5" r="1.5" fill="#0E8F83"/>
+                  <circle cx="18" cy="11.5" r="1.5" fill="#0E8F83"/>
+                </svg>
+                <span class="brand-text">HappySmile</span>
+              </div>
+              <button id="btn-patient-start-over-top" class="text-link text-xs" style="display:none;" aria-label="Reset patient view">Start over</button>
+            </header>
+
+            <!-- Dynamic Patient Content Area -->
+            <div id="patient-content" class="patient-content-area" aria-live="polite">
+              <!-- Initial Screen 1 State (Injected by JS) -->
+            </div>
+
+            <!-- Phone Footer -->
+            <footer class="patient-phone-footer">
+              <p class="sample-data-notice">Fictional scenario for a product case exercise. All names, numbers and calls are sample data.</p>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SCREEN 2: HAPPYSMILE LEAD DESK ==================== -->
+    <section id="screen-team" class="screen-view" role="tabpanel" aria-labelledby="nav-btn-team" aria-hidden="true" style="display:none;">
+      <div class="team-container">
+        <!-- Lead Desk Header -->
+        <header class="lead-desk-header">
+          <div class="header-left">
+            <div class="desk-title-group">
+              <div class="brand-logo">
+                <svg class="brand-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="14" cy="14" r="13" stroke="#0E8F83" stroke-width="2" fill="#E8F6F4"/>
+                  <path d="M8 15C9.5 18 12 19 14 19C16 19 18.5 18 20 15" stroke="#0E8F83" stroke-width="2.5" stroke-linecap="round"/>
+                  <circle cx="10" cy="11.5" r="1.5" fill="#0E8F83"/>
+                  <circle cx="18" cy="11.5" r="1.5" fill="#0E8F83"/>
+                </svg>
+                <h1 class="desk-title">HappySmile · Lead desk</h1>
+              </div>
+              <div class="clinic-select-wrapper">
+                <label for="clinic-select" class="visually-hidden">Filter by clinic</label>
+                <select id="clinic-select" class="clinic-select" aria-label="Filter leads by clinic">
+                  <option value="all">All pilot clinics</option>
+                  <option value="Indiranagar">Indiranagar</option>
+                  <option value="Koregaon Park">Koregaon Park</option>
+                  <option value="Banjara Hills">Banjara Hills</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="header-right">
+            <div class="header-meta">
+              <span class="clock-label">Today · 2:30 PM</span>
+              <span class="pilot-badge">Pilot · Week 2 of 4</span>
+            </div>
+            <div class="header-actions">
+              <button id="btn-handoff-rules" class="btn btn-secondary btn-sm" aria-haspopup="dialog">
+                <svg class="icon-inline" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                  <line x1="2" y1="4" x2="14" y2="4"/>
+                  <circle cx="6" cy="4" r="2" fill="white"/>
+                  <line x1="2" y1="12" x2="14" y2="12"/>
+                  <circle cx="10" cy="12" r="2" fill="white"/>
+                </svg>
+                <span>Handoff rules</span>
+              </button>
+              <button id="btn-reset-demo" class="btn btn-outline btn-sm">
+                <svg class="icon-inline" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M2.5 8a5.5 5.5 0 1 1 1.6 3.9L2 14"/>
+                  <polyline points="2 9.5 2 14 6.5 14"/>
+                </svg>
+                <span>Reset demo</span>
+              </button>
+            </div>
+          </div>
+        </header>
+
+        <!-- Experiment Strip Card -->
+        <section class="experiment-card" aria-label="Pilot test results">
+          <div class="experiment-header">
+            <div class="exp-title-row">
+              <h2 class="exp-title">Pilot test: AI first call vs today's process</h2>
+              <span class="exp-subtitle">3 clinics · 4-week randomized trial</span>
+            </div>
+            <p class="exp-note">Enquiries are split at random by ID, same clinics, same hours.</p>
+          </div>
+
+          <div class="experiment-table-wrapper">
+            <table class="experiment-table">
+              <thead>
+                <tr>
+                  <th scope="col" class="metric-col">Metric</th>
+                  <th scope="col" class="group-col group-ai">AI group</th>
+                  <th scope="col" class="group-col group-normal">Normal group</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="metric-name">Enquiries today</td>
+                  <td class="ai-val">38</td>
+                  <td class="normal-val">37</td>
+                </tr>
+                <tr>
+                  <td class="metric-name">Reached within 10 minutes</td>
+                  <td class="ai-val highlight-green">64%</td>
+                  <td class="normal-val">9%</td>
+                </tr>
+                <tr>
+                  <td class="metric-name">Median time to first contact</td>
+                  <td class="ai-val highlight-green">2 min</td>
+                  <td class="normal-val">4 h 40 min</td>
+                </tr>
+                <tr>
+                  <td class="metric-name">Booked</td>
+                  <td class="ai-val">41%</td>
+                  <td class="normal-val">30%</td>
+                </tr>
+                <!-- Primary success metric row -->
+                <tr class="success-metric-row" aria-label="Primary Success Metric">
+                  <td class="metric-name">
+                    <div class="metric-highlight-title">
+                      <span>Attended consultations per 100 enquiries (week to date)</span>
+                      <span class="metric-tag">Single success metric</span>
+                    </div>
+                  </td>
+                  <td class="ai-val metric-hero-val">22.8</td>
+                  <td class="normal-val metric-hero-val-subtle">18.9</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="progress-section">
+            <div class="progress-meta">
+              <span class="progress-label">Test progress: 640 of about 2,000 enquiries. Result not final yet.</span>
+              <span class="progress-percent">32%</span>
+            </div>
+            <div class="progress-bar-track" role="progressbar" aria-valuenow="32" aria-valuemin="0" aria-valuemax="100" aria-label="Trial completion">
+              <div class="progress-bar-fill" style="width: 32%;"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Desk Tabs -->
+        <nav class="desk-tabs-nav" aria-label="Lead categories">
+          <div class="tabs-list" role="tablist">
+            <button class="desk-tab" role="tab" id="tab-needs-human" aria-selected="true" aria-controls="panel-leads" data-tab="needs-human" tabindex="0">
+              <span>Needs a human</span>
+              <span class="tab-badge badge-coral" id="count-needs-human">0</span>
+            </button>
+            <button class="desk-tab" role="tab" id="tab-booked" aria-selected="false" aria-controls="panel-leads" data-tab="booked" tabindex="-1">
+              <span>Booked</span>
+              <span class="tab-badge" id="count-booked">0</span>
+            </button>
+            <button class="desk-tab" role="tab" id="tab-follow-up" aria-selected="false" aria-controls="panel-leads" data-tab="follow-up" tabindex="-1">
+              <span>Follow-up</span>
+              <span class="tab-badge" id="count-follow-up">0</span>
+            </button>
+            <button class="desk-tab" role="tab" id="tab-control-group" aria-selected="false" aria-controls="panel-leads" data-tab="control-group" tabindex="-1">
+              <span>Control group</span>
+              <span class="tab-badge" id="count-control-group">0</span>
+            </button>
+            <button class="desk-tab" role="tab" id="tab-all" aria-selected="false" aria-controls="panel-leads" data-tab="all" tabindex="-1">
+              <span>All</span>
+              <span class="tab-badge" id="count-all">0</span>
+            </button>
+          </div>
+        </nav>
+
+        <!-- Leads Container List -->
+        <section id="panel-leads" class="leads-panel" role="tabpanel" aria-labelledby="tab-needs-human">
+          <div id="leads-list" class="leads-grid" aria-live="polite">
+            <!-- Injected by JS -->
+          </div>
+        </section>
+
+        <!-- Team View Footer -->
+        <footer class="team-footer">
+          <p class="sample-data-notice">Fictional scenario for a product case exercise. All names, numbers and calls are sample data.</p>
+        </footer>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Right Drawer: Lead Details -->
+  <div id="lead-drawer-overlay" class="drawer-overlay" aria-hidden="true" style="display:none;"></div>
+  <aside id="lead-drawer" class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-hidden="true" style="display:none;">
+    <div class="drawer-header">
+      <div>
+        <h2 id="drawer-title" class="drawer-title">Lead details</h2>
+        <p id="drawer-subtitle" class="drawer-subtitle"></p>
+      </div>
+      <button id="btn-close-drawer" class="btn-icon" aria-label="Close details drawer">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="5" y1="5" x2="15" y2="15"/>
+          <line x1="15" y1="5" x2="5" y2="15"/>
+        </svg>
+      </button>
+    </div>
+    <div id="drawer-body" class="drawer-body">
+      <!-- Injected by JS -->
+    </div>
+  </aside>
+
+  <!-- Modal: Handoff Rules -->
+  <div id="modal-rules-overlay" class="modal-overlay" aria-hidden="true" style="display:none;">
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="rules-modal-title">
+      <div class="modal-header">
+        <div>
+          <h2 id="rules-modal-title" class="modal-title">When the AI hands over to a person</h2>
+          <p class="modal-subtitle">Owned by the front-desk lead</p>
+        </div>
+        <button id="btn-close-rules-modal" class="btn-icon" aria-label="Close handoff rules modal">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <line x1="5" y1="5" x2="15" y2="15"/>
+            <line x1="15" y1="5" x2="5" y2="15"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <p class="rules-intro">The AI assistant screens incoming inquiries immediately and transfers callers to front-desk staff under these triggers:</p>
+        <ul class="rules-list" id="handoff-rules-list">
+          <!-- Injected by JS -->
+        </ul>
+      </div>
+
+      <div class="modal-footer">
+        <span class="modal-meta-note">Last edited by Meera, front-desk lead, today 9:12 AM</span>
+        <button id="btn-save-rules" class="btn btn-primary btn-sm">Save rules</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Region -->
+  <div id="toast-region" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Vanilla App Script -->
+  <script src="app.js"></script>
+</body>
+</html>
